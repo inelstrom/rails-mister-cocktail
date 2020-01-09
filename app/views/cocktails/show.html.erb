@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-12">
+        <h1><%= @cocktail.name %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>Ingredients:</h2>
+        <ul>
+          <% @cocktail.doses.each  do |dose|%>
+            <li>
+              <%= dose.ingredient.name %> ---
+              <%= dose.description %>
+              <%= link_to "Remove", cocktail_dose_path(@cocktail),
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: 'ml-3 text-danger'
+              %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-sm-12 col-md-6">
+      <%= render "/doses/new", cocktail: @cocktail, dose: @dose %>
+    </div>
+</div>
+
+
